@@ -1,0 +1,64 @@
+{
+  "name": "ui",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "main": "electron/main.cjs",
+  "scripts": {
+    "dev": "concurrently -k \"vite\" \"wait-on tcp:5173 && electron .\"",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "electron": "wait-on tcp:5173 && electron .",
+    "dist": "npm run build && electron-builder"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.18",
+    "@types/react": "^19.2.9",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.2",
+    "autoprefixer": "^10.4.23",
+    "concurrently": "^9.2.1",
+    "electron": "^40.0.0",
+    "electron-builder": "^26.4.0",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.18",
+    "typescript": "~5.9.3",
+    "vite": "^7.2.4",
+    "wait-on": "^9.0.3"
+  },
+  "dependencies": {
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3"
+  },
+  "build": {
+    "appId": "com.supertonic.ui",
+    "productName": "Supertonic TTS",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "../rust/target/release/example_onnx.exe",
+        "to": "rust/example_onnx.exe"
+      },
+      {
+        "from": "../rust/target/release/DirectML.dll",
+        "to": "rust/DirectML.dll"
+      },
+      {
+        "from": "../rust/assets",
+        "to": "rust/assets"
+      }
+    ],
+    "win": {
+      "target": "dir",
+      "artifactName": "${productName}-${version}.${ext}",
+      "forceCodeSigning": false
+    }
+  }
+}

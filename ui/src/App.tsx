@@ -87,14 +87,14 @@ function App() {
             <div className="max-w-4xl mx-auto space-y-8">
 
                 {/* Header */}
-                <header className="flex justify-between items-center border-b border-sonic-gray pb-6">
+                <header className="flex justify-between items-center border-b border-sonic-gray pb-6 drag-region pt-4 select-none">
                     <div>
                         <h1 className="text-4xl font-bold tracking-tighter text-white">
                             Supertonic
                         </h1>
                         <p className="text-gray-400 mt-2">Lightning Fast On-Device TTS</p>
                     </div>
-                    <div className="flex gap-4">
+                    <div className="flex gap-4 pr-36">
                         <div className="text-xs text-right text-gray-500">
                             <p>Status: Local</p>
                         </div>
